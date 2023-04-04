@@ -1,6 +1,7 @@
-// import './App.css';
+import './App.css';
 import { useState, useRef } from "react";
 import TodoList from "./TodoList";
+import Header from "./Header";
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
@@ -31,15 +32,21 @@ function App() {
     setTodos(newTodos);
   };
 
+
   return (
     <div>
-      <TodoList todos={todos} toggleTodo={toggleTodo}/>
-      <input type="text" ref={todoNameRef}/>
-      <button onClick={handleAddTodo}>add task</button>
-      <button onClick={handleClear}>delete task</button>
-      <div>Remaining tasks:{todos.filter((todo) => !todo.completed).length}</div>
+      <Header />
+      <div class="todolist">
+        <TodoList todos={todos} toggleTodo={toggleTodo}/>
+      </div>
+      <div class="add-todo">
+        <input type="text" ref={todoNameRef}/>
+        <button onClick={handleAddTodo}>add task</button>
+        <button onClick={handleClear}>delete task</button>
+        <div>Remaining tasks:{todos.filter((todo) => !todo.completed).length}</div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
